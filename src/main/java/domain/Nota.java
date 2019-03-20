@@ -1,103 +1,55 @@
-package domain;
+package Domain;
 
-import repository.HasID;
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Random;
+import java.lang.Object;
+public class Nota implements hasID<Map.Entry<String,Integer>>{
+    private Map.Entry<String,Integer> id;
+    private Student st;
+    private Teme tm;
+    private float valoare;
+    private int data;
+    public Nota(Map.Entry<String,Integer> id,Student s,Teme t, float val, int d){
+        this.id=id;
+        this.st=s;
+        this.tm=t;
+        this.valoare=val;
+        this.data=d;
+    }
+    public Map.Entry<String,Integer> getID(){
+        return id;
+    }
+    public void setID(Map.Entry<String,Integer> x){
+        this.id=x;
+    }
+    public String getStud(){
+        return st.getID();
+    }
+    public Integer getTema(){
+        return this.tm.getID();
+    }
+    public Student getStudent(){return st;}
+    public float getVal(){
+        return this.valoare;
+    }
+    public float getValoare(){
 
-import java.time.LocalDate;
-
-public class Nota implements HasID<String> {
-    private String id;
-    private String idStudent;
-    private String idTema;
-    private double nota;
-    private LocalDate data;
-
-    /**
-     * Class Constructor
-     * @param id - id-ul notei
-     * @param idStudent - id-ul studentului
-     * @param idTema - id-ul temei
-     * @param nota - valoarea notei
-     * @param data - data in care a fost predata tema
-     */
-    public Nota(String id, String idStudent, String idTema, double nota, LocalDate data){
-        this.id = id;
-        this.idStudent = idStudent;
-        this.idTema = idTema;
-        this.nota = nota;
-        this.data = data;
+        if(this.getDl()-this.getPredat()==-1)
+            this.valoare=valoare-2.5f;
+        if(this.getPredat()-this.getDl()==2)
+            this.valoare=valoare-5;
+        if(this.getPredat()-this.getDl()>2)
+            this.valoare=0;
+        if(this.valoare<0)
+            this.valoare=0;
+        return this.valoare;
+    }
+    public int getPredat(){
+        return this.data;
+    }
+    public int getDl(){
+        return this.tm.getDeadline();
     }
 
-    /**
-     * @return id-ul studentului
-     */
-    public String getIdStudent() {
-        return idStudent;
-    }
-
-    /**
-     * @return id-ul temei
-     */
-    public String getIdTema() {
-        return idTema;
-    }
-
-    /**
-     * @return valoarea notei
-     */
-    public double getNota() {
-        return nota;
-    }
-
-    /**
-     * Modifica valoarea unei note
-     * @param nota - noua valoarea a notei
-     */
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
-
-    /**
-     * @return data in care a fost predata nota
-     */
-    public LocalDate getData() {
-        return data;
-    }
-
-    @Override
-    public String toString() {
-        return idStudent + "," + idTema + "," + nota + "," + data;
-    }
-
-    /**
-     * @return id-ul notei
-     */
-    @Override
-    public String getID() {
-        return this.id;
-    }
-
-    /**
-     * modifica id-ul notei
-     * @param id - noul id
-     */
-    @Override
-    public void setID(String id) {
-        this.id = id;
-    }
-
-    /**
-     * modifica id-ul studentului
-     * @param idStudent - noul id
-     */
-    public void setIdStudent(String idStudent) {
-        this.idStudent = idStudent;
-    }
-
-    /**
-     * modifica id-ul temei
-     * @param idTema - noul id
-     */
-    public void setIdTema(String idTema) {
-        this.idTema = idTema;
-    }
 }

@@ -1,92 +1,53 @@
-package domain;
+package Domain;
 
-import repository.HasID;
-
-public class Student implements HasID<String> {
+public class Student implements hasID<String> {
     private String idStudent;
     private String nume;
-    private int grupa;
+    private int grupa ;
     private String email;
-
-    /**
-     * Class Constructor
-     * @param idStudent - id-ul studentului
-     * @param nume - numele studentului
-     * @param grupa - grupa studentului
-     * @param email - emailul unui student
-     */
-    public Student(String idStudent, String nume, int grupa, String email) {
-        this.idStudent = idStudent;
-        this.nume = nume;
-        this.grupa = grupa;
-        this.email = email;
+    private String profesor;
+    public Student (String id,String n, int gr, String e,String prof){
+        this.idStudent=id;
+        this.nume=n;
+        this.grupa=gr;
+        this.email=e;
+        this.profesor=prof;
     }
-
-    /**
-     * @return id-ul unui student
-     */
-    public String getID() {
+    public String getID(){
         return idStudent;
     }
-
-    /**
-     * modifica id-ul unui student
-     * @param ID - noul id al studentului
-     */
-    public void setID(String ID) {
-        this.idStudent = ID;
+    public void setID(String id){
+        this.idStudent=id;
     }
-
-    /**
-     * @return numele studentului
-     */
-    public String getNume() {
+    public String getNume(){
         return nume;
     }
-
-    /**
-     * modifica numele studentului
-     * @param nume - noul nume
-     */
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setNume(String nume){
+        this.nume=nume;
     }
-
-    /**
-     * @return grupa studentului
-     */
-    public int getGrupa() {
+    public int getGrupa(){
         return grupa;
     }
-
-    /**
-     * modifica grupa studentului
-     * @param grupa - noua grupa
-     */
-    public void setGrupa(int grupa) {
-        this.grupa = grupa;
+    public void setGrupa(int grupa){
+        this.grupa=grupa;
     }
-
-    /**
-     * @return emai-ul studentului
-     */
-    public String getEmail() {
+    public String getMail(){
         return email;
     }
-
-    /**
-     * modifica emailul studentului
-     * @param email - noul email
-     */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail){
+        this.email=mail;
     }
-
-    /**
-     * @return un obiect de tip Student sub forma de string
-     */
-    @Override
-    public String toString() {
-        return idStudent + "," + nume + "," + grupa + "," + email;
+    public String getProfesor(){
+        return profesor;
+    }
+    public void setProfesor(String prof){
+        this.profesor=prof;
+    }
+    public String toString(){
+        return idStudent+' '+nume+' '+grupa+' '+email+' '+profesor;
+    }
+    public boolean equals(Object object2) {
+        return object2 instanceof Student && this.email==((Student) object2).email && this.grupa==((Student) object2).grupa && this.idStudent==((Student) object2).idStudent && this.nume==((Student) object2).nume && this.profesor==((Student) object2).profesor;
     }
 }
+
